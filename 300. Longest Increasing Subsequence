@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/longest-increasing-subsequence/description/?envType=daily-question&envId=2024-01-05
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& a) {
+        int n=a.size();
+         int dp[n+1];
+	int nmax=0;
+	for(int i=0;i<n;i++){
+		int tempmax=0;
+		for(int j=0;j<i;j++){
+			if(a[i]>a[j]){
+				if(tempmax<dp[j]){
+					tempmax=dp[j];
+				}
+			}
+		}
+		dp[i]=tempmax+1;
+		if(dp[i]>nmax){
+			nmax=dp[i];
+		}
+	}
+	return nmax;
+    }
+};
